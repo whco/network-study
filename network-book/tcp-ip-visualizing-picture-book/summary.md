@@ -179,5 +179,48 @@ IP 전화나 인스턴트 메신저 등 통신 서비스
 애플리케이션 계층에서 추가되는 헤더
 - 요청과 응답에 관한 정보
 - 프로토콜에 따라 헤더 사용하지 않는 경우도 있음
-- 프토로콜에 따라 텍스트 기반(영문자, 숫자만) 또는 바이너로 기반으로 작성
+- 프토로콜에 따라 텍스트 기반(영문자, 숫자만) 또는 바이너리 기반으로 작성
 - 클라이언트가 서버에 서비스 요청 시 구체적 데이터 주고받지 않고 연락만 취할 때는 데이터 부분이 비어 있는 상태로 보냄
+#### HTTP 프로토콜
+HTTP 프로토콜 : 하나의 요청에 대해 하나의 응답 반환하는 아주 간단한 프로토콜
+- 페이지를 구성하는 파일 수만큼 이 작업 반복
+- 요청(request)과 응답(response)이라는 두 종류 패킷 사용해 텍스트 형식으로 주고받기 수행.
+요청 패킷
+- 클라이언트가 서버에게 보내는 패킷
+- 헤더 : GET /home/index.html HTTP/1.1
+  - 메소드 : 요청의 종류
+  - GET, PUT 등..
+- 요청 헤더 : 
+  > Host : www.cyber.co.kr:443
+  > Accept : text/html,application/xhtml+xml,application/xml;q=0.9,image/
+  > webp,image/apng,*/*;q=0.8
+  > Upgrade-Insecure-Requests: 1
+  > User-Agent: Mozilla/5.0 (Macintosh: Intel Mac OS X 10_14_4)
+  > AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86
+  > Safari/537.86
+  - 서버에 전달하는 클라이언트의 정보(처리 가능한 파일 종류, 문자 코드, 언어)
+  - 항목명과 정보는 콜론(:)으로 구분
+- 공백 줄 : 헤더와 본문의 경계
+- 본문 : 요청 시 필요한 데이터
+- 메소드가 GET인 경우 비어 있음
+응답 패킷
+- 서버가 클라이언트에게 보내는 패킷
+- 상태 줄 : HTTP/1.1 200 OK
+  - 클라리언트의 요청에 대한 처리 결과. 정상적으로 처리한 경우 200번대
+- 응답 헤더 :
+  > Cache-Control: no-store, no-cache, must-
+  > revalidate, post-check=0, pre-check=0
+  > Connection: Keep-Alive Content-Type: text/html; charset=euc-kr
+  > Date: Fri, 29 Mar 2019 00:30:57 GMT
+  > Expires: Thu, 19 Nov 1981 08:52:00 GMT
+  > Keep-Alive: timeout=5 max=100
+  > Last-Modified: Fri, 29 Mar 2019 00:30:57 GMT
+  - 클라이언트에게 전달할 데이터에 관한 정보
+  - 공백 줄 : 헤더와 본문의 경계
+  - 본문 : 클라이엉ㄴ트에게 전달할 데이터
+#### 통신을 유지하는 구조
+- HTTP 프로토콜은 '요청된 데이터를 반환하는 것'만을 목적으로 만들어짐
+- 한 번의 요청과 응답으로 통신
+- 과거에 수행한 통신과 관련 맺는 경우는 없음
+- 통신 연결 -> 요청 -> 응답 -> 해제
+- 상태 비보존형 프로토콜(stateless protocol) : 한 번으로 끝나는 프로토콜
