@@ -106,11 +106,57 @@ URL(Uniform Resource Locator)의 구조 <br>
   - 
 #### WWW
 
-WWW 서버 : 하이퍼텍스트나 이미지, 음성, 파일 등을 보관하고, WWW 브라우저의 요청에 맞게 전달<br>
-WWW 브라우저 : WWW 서버로부터 다운로드한 파일을 표시
+- WWW 서버 : 하이퍼텍스트나 이미지, 음성, 파일 등을 보관하고, WWW 브라우저의 요청에 맞게 전달<br>
+- WWW 브라우저 : WWW 서버로부터 다운로드한 파일을 표시
 
 #### 전자메일
 송신자 -- SMTP -> 메일 서버 A -- SMTP -> 메일 서버 B -- POP -> 수신자(POP 서버에 메일 확인 요청 후 수신)
 - SMTP(Simple Mail Transfer Protocol) 서버 : SMTP를 사용하여 메일 전송을 담당하는 프로그램
 - POP(Post Office Protocol) 서버 : POP를 사용하여 클라이언트에게 메일 제공을 담당하는 프로그램
 - 일반적으로 한 대의 컴퓨터가 SMTP 서버와 POP 서버 겸임
+
+#### 파일 전송
+- FTP 서버 : 특정 전송 공간이 있음. 서버 내 전부가 전송 공간일 수도
+- 통신이 허용된 클라이언트만 데이터 전송 가능
+- FTPS(File Transfer Protocol over SSL/TLS), SFTP(SSH File Transfer Protocol) 으로 암호화해서 전송 권장
+- Anonymour FTP : 누구나 전송(보통은 다운로드 한정)할 수 있는 FTP 서비스
+#### 원격 로그인
+- 대표적인 서비스로 텔넷(TELNET)
+- 텔넷 클라이언트
+  - telnet 명령이나 테라 텀(Tera Term)이라는 애플리케이션
+  - 기본적으로 CUI(Character User Interface) 환경 에서 작동
+  - 클라이언트의 키보드로 입력한 명령이 서버로 보내져서 처리된 결과를 클라이언트로 반환
+  - TELNET 프로토콜 기초로 수행
+  - 서버 측의 OS에 맞춘 명령 사용
+SSH(Secure Shell)
+- 다른 컴퓨터에 로그인할 때 통신을 암호화하는 프로토콜
+- 텔넷에는 암호화 기능이 없어서 도청 위험
+- 패킷이 탈취돼도 통신 내용 쉽게 해독할 수 없음
+데스크톱 공유
+- 네트워크 상의 다른 컴퓨터의 데스크톱 환경에 접속해 파일이나 애플리케이션을 조작하는 기술
+- 원격 데스크톱 연결 조건
+  - 전원이 켜져 있다
+  - 네트워크에 연결돼 있다
+  - 원격 데스크톱 기능이 활성화 되어 있고 액세스를 허가했다.
+- 통신 프로토콜은 RDP(remote Desktop Protocol) 사용
+#### 파일 공유
+파일이나 애플리케이션 등을 다른 사용자와 함께 사용할 수 있도록 하는 통신 서비스
+- 프로토콜은 OS에 따라 달라짐
+- UNIX와 Windows 사이에 공유하는 경우 UNIX는 Samba라는 애플리케이션 필요, 같은 OS끼린 필요 없음
+- 클라이언트가 수행한 조작을 서버로 실시간으로 보냄
+- 프로토콜 : Windows의 경우 SMB(Server Message Block), CIFS(common Interface File System), UNIX의 경우 NFS(Network File System) 등 이용
+#### 기타 서비스
+IP 전화나 인스턴트 메신저 등 통신 서비스
+- VoIP(Voice over IP) : 상대의 전화번호나 음성 데이터를 패킷화시켜 전달하는 기술
+- 이 기술을 사용해 인터넷이나 독자적인 네트워크에서 통신하는 전화 서비스
+- 회선을 독점하지 않음
+- SIP(session Initiation Protocol) : 상대에게 다이얼을 돌려서 호출하기까지
+- RTP(Real-time Transport Protocol), RTCP(RTP Control Protocol) : 실제로 대화 시작된 후
+인스턴트메신저(IM)
+- 미리 등록한 다른 클라이언트(멤버)가 통신할 수 있는 상태인지 아닌지 확인하여 그 상태를 표시하고 실시간으로 통신할 수 있는 서비스
+- 끊임없이 멤버의 상태를 확인
+  - 자리비움, 오프랑니, 온라인 등
+- 기능마다 개별 프로토콜 사용
+- 주요 클라이언트 : Skype, LINE 등
+- 프로토콜이 통일되어 있지 않음 -> 다른 클라이언트끼리 통신 불가
+### 3장 : 애플리케이션 계층
